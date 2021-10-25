@@ -5,7 +5,8 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public float moveSpeed = 5f;
-
+    public int health = 100;
+    
     public Rigidbody2D rb;
     public Camera cam;
 
@@ -33,6 +34,14 @@ public class PlayerController : MonoBehaviour
         float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg;
 
         rb.rotation = angle;
+    }
+    
+    public void TakeDamage(int damage)
+    {
+        health -= damage;
+        if(health < 0){
+            Destroy(gameObject);
+        }
     }
 
 }

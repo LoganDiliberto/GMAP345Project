@@ -10,14 +10,14 @@ public class Bullet : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        print("bullet here");
         rb.velocity = transform.right * speed;
     }
 
-    void onTriggerEnter2D(Collider2D hitInfo){
-        Enemy enemy = hitInfo.GetComponent<Enemy>();
+    void OnTriggerEnter2D(Collider2D collider){
+        Enemy enemy = collider.GetComponent<Enemy>();
         if(enemy != null){
             enemy.TakeDamage(damage);
+            Debug.Log("Enemy took " + damage);
         }
         Destroy(gameObject);
     }
